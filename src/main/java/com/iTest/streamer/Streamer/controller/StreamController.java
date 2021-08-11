@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @Slf4j
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:14060", "http://10.81.64.15:14060", "http://10.81.64.15:14059", "http://10.81.64.15:14059", "http://localhost:8080"})
+@CrossOrigin(origins = {"http://localhost:4400","http://localhost:4200", "http://localhost:14060", "http://10.81.64.15:14060", "http://10.81.64.15:14059", "http://10.81.64.15:14059", "http://localhost:8080"})
 public class StreamController {
     static Map <String, ChunkedFileUploadInFlight> sessionToFileMap = new ConcurrentHashMap <>();
 

@@ -58,7 +58,6 @@ XHRChunkingUploder.prototype.uploadChunk = function (file, metadata) {
     xhr.setRequestHeader("X-File-Name", metadata.fileName);
     xhr.setRequestHeader("X-Upload-Session-id", `${metadata.sessionId}`);
     xhr.setRequestHeader("X-File-Chunk-Sequence", metadata.seq);
-    xhr.setRequestHeader("X-File-Chunk-Parts", chunkParts);
 
     if (i == chunkParts - 1) {
         xhr.setRequestHeader("X-File-Last", true + "");
