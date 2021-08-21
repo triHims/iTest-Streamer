@@ -56,7 +56,7 @@ public class StreamController {
         if (inFlightUpload.getIsCompleted() &&
                 (inFlightUpload.chunksWritten.get() >= inFlightUpload.getTotalParts())) {
 
-            SaveToFileSystem.save(fileName, "chunk-upload", inFlightUpload.getAllBytes(inFlightUpload.chunksWritten.get()));
+            SaveToFileSystem.save(fileName,uploadSessionId , "chunk-upload", inFlightUpload.getAllBytes(inFlightUpload.chunksWritten.get()));
             sessionToFileMap.remove(uploadSessionId);
 
             log.info("Chunked Upload Final " + fileName);
@@ -65,7 +65,8 @@ public class StreamController {
 
             return ResponseEntity.ok().header(
                     HttpHeaders.CONTENT_DISPOSITION,
-                    "attachment; filename=\"" + fileName + "\"").body("{\"success\": true}");
+                    "attachment; filename=\"" + fileName + "\"")
+                    .body("{\"success\": true}");
 
         }
 
@@ -93,7 +94,7 @@ public class StreamController {
         inFlightUpload.setTotalParts(noOfParts);
         if (inFlightUpload.chunksWritten.get() >= inFlightUpload.getTotalParts()) {
 
-            SaveToFileSystem.save(fileName, "chunk-upload",
+            SaveToFileSystem.save(fileName, uploadSessionId , "chunk-upload",
                     inFlightUpload.getAllBytes(inFlightUpload.chunksWritten.get()));
 
 
@@ -104,7 +105,8 @@ public class StreamController {
 
             return ResponseEntity.ok().header(
                     HttpHeaders.CONTENT_DISPOSITION,
-                    "attachment; filename=\"" + fileName + "\"").body("{\"success\": true}");
+                    "attachment; filename=\"" + fileName + "\"")
+                    .body("{\"success\": true}");
 
         }
 

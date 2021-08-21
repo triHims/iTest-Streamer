@@ -11,12 +11,12 @@ import java.util.UUID;
 
 public class SaveToFileSystem {
 
-    public static void save(String fileName, String prefix, byte[] data) throws IOException {
-        SaveToFileSystem.save(fileName, prefix, ByteBuffer.wrap(data));
+    public static void save(String fileName, String sessionId , String prefix, byte[] data) throws IOException {
+         SaveToFileSystem.save(fileName,sessionId , prefix, ByteBuffer.wrap(data));
     }
 
-    public static void save(String fileName, String prefix, ByteBuffer bufferedBytes) throws IOException {
-        Path basePath = Paths.get(".", "uploads", prefix, UUID.randomUUID().toString());
+    public static void save(String fileName, String sessionId , String prefix, ByteBuffer bufferedBytes) throws IOException {
+        Path basePath = Paths.get(".", "uploads", prefix,sessionId);
         Files.createDirectories(basePath);
 
         FileChannel channel =  new FileOutputStream(Paths.get(basePath.toString(), fileName).toFile(), false).getChannel();
